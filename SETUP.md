@@ -11,21 +11,26 @@ This setup provides a complete configuration for running a Node.js Express appli
 
 ## Quick Start
 
+**Important**: Run all commands from the repository root directory where the `package.json` and `app.js` files are located.
+
 ### 1. Install Node.js Dependencies
 
 ```bash
+# From the repository root directory
 npm install
 ```
 
 ### 2. Start the Node.js Application
 
 ```bash
+# From the repository root directory
 npm start
 ```
 
 Or for development with auto-reload:
 
 ```bash
+# From the repository root directory
 npm run dev
 ```
 
