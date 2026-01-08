@@ -2,6 +2,8 @@
 
 This setup provides a complete configuration for running a Node.js Express application behind an Nginx reverse proxy.
 
+> **⚠️ IMPORTANT**: All commands in this guide must be run from **this repository's root directory** (the directory containing `app.js` and `package.json`), NOT from any other directory like `~/node-app`.
+
 ## Components
 
 1. **app.js** - Express.js application running on port 3000
@@ -150,9 +152,27 @@ curl http://localhost:3000
 
 ### Common Issues
 
-1. **Port already in use**: Make sure no other service is using port 3000 or 80
-2. **Permission denied**: Run Nginx with appropriate permissions
-3. **Connection refused**: Ensure Node.js app is running before starting Nginx
+1. **"Missing script: start" error**: 
+   - This means you're not in the correct directory
+   - The error occurs when running `npm start` from a directory that doesn't contain this repository's `package.json`
+   - **Solution**: Navigate to the repository root directory first:
+     ```bash
+     # Navigate to where you cloned/downloaded this repository
+     cd /path/to/server-configs-nginx
+     
+     # Verify you're in the right place (should list app.js and package.json)
+     ls -la | grep -E "app.js|package.json"
+     
+     # Now run npm commands
+     npm install
+     npm start
+     ```
+
+2. **Port already in use**: Make sure no other service is using port 3000 or 80
+
+3. **Permission denied**: Run Nginx with appropriate permissions
+
+4. **Connection refused**: Ensure Node.js app is running before starting Nginx
 
 ## Application Endpoints
 
