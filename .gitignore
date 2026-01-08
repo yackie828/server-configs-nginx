@@ -2,5 +2,8 @@ logs/
 conf.d/*.conf
 !conf.d/.default.conf
 !conf.d/no-ssl.default.conf
+!conf.d/nodejs-app.conf
 test/*
 !test/vhosts/
+node_modules/
+package-lock.json
