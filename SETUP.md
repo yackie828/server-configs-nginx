@@ -74,7 +74,7 @@ The `conf.d/nodejs-app.conf` file configures Nginx to:
 
 - **Upstream keepalive**: Connection pooling for better performance
 - **WebSocket support**: Upgrade headers for real-time communication
-- **Security headers**: X-Frame-Options, CSP, XSS Protection, etc.
+- **Security headers**: X-Frame-Options, Content-Security-Policy, X-Content-Type-Options, Referrer-Policy
 - **Proper request forwarding**: X-Real-IP, X-Forwarded-For, X-Forwarded-Proto
 - **Configurable timeouts**: 60s for connect, send, and read operations
 
@@ -90,10 +90,10 @@ server_name yourdomain.com;
 
 ### Adjust Upload Size
 
-Modify the `client_max_body_size` directive:
+Modify the `client_max_body_size` directive in `conf.d/nodejs-app.conf`:
 
 ```nginx
-client_max_body_size 100M;  # Change to desired size
+client_max_body_size 10M;  # Default: 10M, adjust based on your needs
 ```
 
 ### Change Node.js Port

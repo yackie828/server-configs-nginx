@@ -24,7 +24,7 @@ app.get('/api/info', (req, res) => {
   });
 });
 
-// Start the server
-app.listen(PORT, () => {
+// Start the server (bind to localhost only for security)
+app.listen(PORT, 'localhost', () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
