@@ -112,7 +112,12 @@ If your Node.js app runs on a different port:
 
 For production deployments:
 
-1. **Use SSL/TLS**: Copy from `conf.d/templates/example.com.conf` and add SSL configuration
+1. **Use SSL/TLS**: Use `conf.d/templates/example.com.conf` as a template for SSL configuration
+   ```bash
+   cp conf.d/templates/example.com.conf conf.d/yourdomain.conf
+   # Edit the file to replace example.com with your domain
+   # Add SSL certificate paths
+   ```
 2. **Process Management**: Use PM2 or similar to keep Node.js app running
 3. **Environment Variables**: Set NODE_ENV=production
 4. **Monitoring**: Configure proper logging and monitoring
