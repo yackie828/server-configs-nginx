@@ -12,6 +12,12 @@ accessible, if needed, even cross-domain.
 
 Using the Nginx server configs repo directly has a few required steps to be able to work.
 
+### Linux Users
+
+If you're setting up Nginx on a Linux system, see the comprehensive **[Linux Setup Guide](LINUX_SETUP.md)** for distribution-specific installation instructions, configuration steps, and troubleshooting tips.
+
+### General Resources
+
 * [Nginx Beginners Guide](https://nginx.org/en/docs/beginners_guide.html)
 * [Nginx Request Processing](https://nginx.org/en/docs/http/request_processing.html)
 
