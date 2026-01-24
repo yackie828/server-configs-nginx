@@ -12,6 +12,7 @@ OUTPUT_DIR="${1:-./all-configs}"
 # Color codes for output
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
+YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}Collecting all nginx configuration files...${NC}"
@@ -21,16 +22,39 @@ mkdir -p "$OUTPUT_DIR"
 
 # Copy main config files
 echo -e "${GREEN}Copying main configuration files...${NC}"
-cp -v nginx.conf "$OUTPUT_DIR/"
-cp -v mime.types "$OUTPUT_DIR/"
+if [ -f "nginx.conf" ]; then
+    cp -v nginx.conf "$OUTPUT_DIR/"
+else
+    echo -e "${YELLOW}Warning: nginx.conf not found${NC}"
+fi
+
+if [ -f "mime.types" ]; then
+    cp -v mime.types "$OUTPUT_DIR/"
+else
+    echo -e "${YELLOW}Warning: mime.types not found${NC}"
+fi
 
 # Copy h5bp directory with all config snippets
-echo -e "${GREEN}Copying h5bp configuration snippets...${NC}"
-cp -rv h5bp "$OUTPUT_DIR/"
+if [ -d "h5bp" ]; then
+    echo -e "${GREEN}Copying h5bp configuration snippets...${NC}"
+    cp -rv h5bp "$OUTPUT_DIR/"
+else
+    echo -e "${YELLOW}Warning: h5bp directory not found${NC}"
+fi
 
 # Copy conf.d directory
-echo -e "${GREEN}Copying conf.d server definitions...${NC}"
-cp -rv conf.d "$OUTPUT_DIR/"
+if [ -d "conf.d" ]; then
+    echo -e "${GREEN}Copying conf.d server definitions...${NC}"
+    cp -rv conf.d "$OUTPUT_DIR/"
+else
+    echo -e "${YELLOW}Warning: conf.d directory not found${NC}"
+fi
+
+# Copy custom.d directory if it exists
+if [ -d "custom.d" ]; then
+    echo -e "${GREEN}Copying custom.d configurations...${NC}"
+    cp -rv custom.d "$OUTPUT_DIR/"
+fi
 
 # Create a README in the output directory
 cat > "$OUTPUT_DIR/README.txt" << 'EOF'
@@ -55,6 +79,7 @@ h5bp/              - Configuration snippets (mixins)
   media_types/     - Media type configurations
 conf.d/            - Server definitions
   templates/       - Server configuration templates
+custom.d/          - Custom configuration files (if present)
 
 Usage:
 ------
@@ -69,8 +94,8 @@ https://github.com/h5bp/server-configs-nginx
 EOF
 
 # Count files copied
-CONF_COUNT=$(find "$OUTPUT_DIR" -name "*.conf" | wc -l)
-TYPES_COUNT=$(find "$OUTPUT_DIR" -name "*.types" | wc -l)
+CONF_COUNT=$(find "$OUTPUT_DIR" -name "*.conf" 2>/dev/null | wc -l)
+TYPES_COUNT=$(find "$OUTPUT_DIR" -name "*.types" 2>/dev/null | wc -l)
 TOTAL_COUNT=$((CONF_COUNT + TYPES_COUNT))
 
 echo ""
