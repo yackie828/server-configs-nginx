@@ -118,6 +118,17 @@ This repository has the following structure:
 
 ## Usage
 
+### Get all config files
+
+To easily collect all configuration files in one place, use the provided script:
+
+```shell
+./get-all-configs.sh [output-directory]
+```
+
+This will copy all `.conf` and `.types` files to the specified directory (defaults to `./all-configs`).
+A README.txt file is included in the output with usage instructions.
+
 ### As a reference
 
 To use as reference requires no special installation steps, download/checkout the
