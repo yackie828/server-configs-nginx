@@ -2,8 +2,29 @@
 
 This guide provides comprehensive instructions for setting up and using the Nginx Server Configs on various Linux distributions.
 
+## Quick Start - Launch Nginx
+
+If Nginx is already installed and you just need to start it:
+
+```bash
+# Start Nginx
+sudo systemctl start nginx
+
+# Enable Nginx to start automatically on boot
+sudo systemctl enable nginx
+
+# Check if Nginx is running
+sudo systemctl status nginx
+
+# Test your Nginx installation
+curl -I http://localhost
+```
+
+For detailed installation and configuration instructions, see the sections below.
+
 ## Table of Contents
 
+- [Quick Start - Launch Nginx](#quick-start---launch-nginx)
 - [Prerequisites](#prerequisites)
 - [Installing Nginx](#installing-nginx)
   - [Ubuntu/Debian](#ubuntudebian)
